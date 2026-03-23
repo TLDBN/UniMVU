@@ -1,22 +1,24 @@
 <div align="center">
 
-# UniMVU: Not All Modalities Are Equal
+# UniMVU: Not All Modalities Are Equal [CVPR 2026]
 
-**CVPR 2026**
+<p align="center">
+  <img src="https://i.imgur.com/waxVImv.png" width="96%" alt="Decorative divider">
+</p>
 
-Bonan Ding<sup>1</sup> · Umair Nawaz<sup>1</sup> · Ufaq Khan<sup>1</sup> · Abdelrahman M. Shaker<sup>1</sup> · Muhammad Haris Khan<sup>1</sup> · Jiale Cao<sup>2</sup> · Jin Xie<sup>3</sup> · Fahad Shahbaz Khan<sup>1,4</sup>
+[Bonan Ding](https://github.com/TLDBN)<sup>1</sup> · [Umair Nawaz](https://github.com/umair1221)<sup>1</sup> · [Ufaq Khan](https://scholar.google.co.kr/citations?user=UYljgNAAAAAJ&hl=en)<sup>1</sup> · [Abdelrahman M. Shaker](https://amshaker.github.io)<sup>1</sup> · [Muhammad Haris Khan](https://scholar.google.com/citations?user=ZgERfFwAAAAJ&hl=en)<sup>1</sup> · [Jiale Cao](https://jialecao001.github.io)<sup>2</sup> · [Jin Xie](https://scholar.google.com/citations?user=T2A8B2EAAAAJ&hl=en)<sup>3</sup> · [Fahad Shahbaz Khan](https://scholar.google.es/citations?user=zvaeYnUAAAAJ&hl=en)<sup>1,4</sup>
 
 <sup>1</sup>Mohamed bin Zayed University of Artificial Intelligence &nbsp;·&nbsp; <sup>2</sup>Tianjin University &nbsp;·&nbsp; <sup>3</sup>Chongqing University &nbsp;·&nbsp; <sup>4</sup>Linköping University
 
 <p>
   <a href="https://TLDBN.github.io/UniMVU/">
-    <img src="https://img.shields.io/badge/Project-Page-f68946?style=flat-square&logo=googlechrome&logoColor=white" alt="Project Page">
+    <img src="https://img.shields.io/badge/🌐_Project-Page-f68946?style=for-the-badge" alt="Project Page">
   </a>
   <a href="https://arxiv.org/abs/YOUR_ARXIV_ID">
-    <img src="https://img.shields.io/badge/arXiv-Paper-b31b1b?style=flat-square&logo=arxiv&logoColor=white" alt="arXiv">
+    <img src="https://img.shields.io/badge/📄_arXiv-Paper-b31b1b?style=for-the-badge" alt="arXiv">
   </a>
   <a href="https://huggingface.co/BonanDing/UniMVU">
-    <img src="https://img.shields.io/badge/HuggingFace-Models-ffae00?style=flat-square&logo=huggingface&logoColor=white" alt="HuggingFace">
+    <img src="https://img.shields.io/badge/🤗_HuggingFace-Models-ffae00?style=for-the-badge" alt="HuggingFace">
   </a>
 </p>
 
@@ -28,23 +30,23 @@ Bonan Ding<sup>1</sup> · Umair Nawaz<sup>1</sup> · Ufaq Khan<sup>1</sup> · Ab
 
 ---
 
-## Table of Contents
+## 📑 Table of Contents
 
-- [Abstract](#abstract)
-- [Highlights](#highlights)
-- [Supported Benchmarks](#supported-benchmarks)
-- [Main Results](#main-results)
-- [Installation](#installation)
-- [Data Preparation](#data-preparation)
-- [Training](#training)
-- [Evaluation](#evaluation)
-- [Repository Layout](#repository-layout)
-- [Citation](#citation)
-- [Acknowledgements](#acknowledgements)
+- [Abstract](#-abstract)
+- [Highlights](#-highlights)
+- [Supported Benchmarks](#-supported-benchmarks)
+- [Main Results](#-main-results)
+- [Installation](#%EF%B8%8F-installation)
+- [Data Preparation](#-data-preparation)
+- [Training](#-training)
+- [Evaluation](#-evaluation)
+- [Repository Layout](#-repository-layout)
+- [Citation](#-citation)
+- [Acknowledgements](#-acknowledgements)
 
 ---
 
-## Abstract
+## 📖 Abstract
 
 > Pre-trained video large language models excel at visual reasoning, but they struggle when videos arrive with auxiliary streams such as audio, depth maps, or high-frame-rate inputs. In these settings, uniform fusion can introduce modality interference and let irrelevant channels distract the model. UniMVU addresses this with **instruction-aware fusion** across video, audio, depth, and other modalities via two dynamic gating stages: **feature-level gates** emphasize salient regions within each modality, while **modality-level gates** reweight whole streams based on the input instruction. Across six benchmarks — AVQA, AVSD, Music-AVQA, ScanQA, SQA3D, and MVBench — UniMVU delivers consistent gains over static-fusion baselines, with improvements of up to **+13.5 CIDEr** on AVSD.
 
@@ -56,30 +58,32 @@ Bonan Ding<sup>1</sup> · Umair Nawaz<sup>1</sup> · Ufaq Khan<sup>1</sup> · Ab
 
 ---
 
-## Highlights
+## ✨ Highlights
 
-- **Instruction-aware dynamic gating** at both feature and modality levels — each query selectively routes attention to the relevant data streams only.
-- **One unified model family** covers audio-video QA, 3D QA, and long-video QA in a single release codebase across six benchmarks.
-- **Clean public interface** centered on `train.py`, `train_uni.py`, `unified_eval.py`, and `lmms_eval_start.py` for straightforward reproducibility.
-- **Flexible training modes** — per-task single-dataset training and unified multi-task training are both supported via the public launch scripts.
-
----
-
-## Supported Benchmarks
-
-| Task Family | Benchmarks |
-| :--- | :--- |
-| Audio-video QA | Music-AVQA, AVQA, AVSD |
-| 3D QA | ScanQA, SQA3D |
-| Long-video QA | MVBench |
+| Feature | Description |
+| :---: | :--- |
+| 🎯 **Instruction-Aware Gating** | Dynamic gating at both feature and modality levels — each query selectively routes attention to the relevant data streams only. |
+| 🏗️ **Unified Model Family** | One architecture covers audio-video QA, 3D QA, and long-video QA across six benchmarks. |
+| 🧩 **Clean Public Interface** | Centered on `train.py`, `train_uni.py`, `unified_eval.py`, and `lmms_eval_start.py` for straightforward reproducibility. |
+| 🔄 **Flexible Training Modes** | Per-task single-dataset training and unified multi-task training are both supported via public launch scripts. |
 
 ---
 
-## Main Results
+## 🌐 Supported Benchmarks
+
+| Task Family | Benchmarks | Modalities |
+| :--- | :--- | :--- |
+| 🎵 Audio-Video QA | Music-AVQA, AVQA, AVSD | Video + Audio |
+| 🧊 3D QA | ScanQA, SQA3D | Video + Depth |
+| 📹 Long-Video QA | MVBench | Video (extended) |
+
+---
+
+## 📊 Main Results
 
 Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our reproduction using the public PAVE code. UniMVU<sup>&dagger;</sup> refers to the jointly trained multi-task model reported in the paper. For ScanQA and SQA3D, refined scores are shown in parentheses where reported.
 
-### Audio-Visual QA
+### 🎵 Audio-Visual QA
 
 #### Music-AVQA
 
@@ -193,7 +197,7 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
   </tbody>
 </table>
 
-#### AVQA and AVSD
+#### AVQA & AVSD
 
 <table>
   <thead>
@@ -279,7 +283,7 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
   </tbody>
 </table>
 
-### 3D QA
+### 🧊 3D QA
 
 #### ScanQA
 
@@ -512,7 +516,7 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
   </tbody>
 </table>
 
-### Long-Video QA
+### 📹 Long-Video QA
 
 #### MVBench
 
@@ -629,30 +633,34 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
 
 ---
 
-## Installation
+## ⚙️ Installation
 
 Requires **Python 3.10**. Create a conda environment and install dependencies:
 
 ```bash
+# 1. Create and activate conda environment
 conda create -n unimvu python=3.10 -y
 conda activate unimvu
+
+# 2. Install dependencies
 pip install -r requirements.txt
 ```
 
-> **Note:** `flash-attn` is included in `requirements.txt`. If installation fails, install it separately:
+> [!NOTE]
+> `flash-attn` is included in `requirements.txt`. If installation fails, install it separately:
 > ```bash
 > pip install flash-attn==2.7.3 --no-build-isolation
 > ```
 
 ---
 
-## Data Preparation
+## 📦 Data Preparation
 
 UniMVU follows the same data conversion and feature preparation flow as [PAVE](https://github.com/dragonlzm/PAVE). Please refer to the PAVE repository for dataset download, annotation conversion, and feature extraction instructions.
 
 ---
 
-## Training
+## 🚀 Training
 
 ### Single-Dataset Training
 
@@ -714,7 +722,7 @@ deepspeed --master_port 60000 train_uni.py \
 
 ---
 
-## Evaluation
+## 📏 Evaluation
 
 ### Unified Evaluation
 
@@ -750,22 +758,22 @@ For unified checkpoints, pair `--model unimvu_uni` with `VideoFeatModelArguments
 
 ---
 
-## Repository Layout
+## 🗂️ Repository Layout
 
 | Path | Description |
 | :--- | :--- |
-| `train.py` | Single-dataset training entry point |
-| `train_uni.py` | Mixed-dataset unified training entry point |
-| `unified_eval.py` | Unified evaluation across all supported datasets |
-| `lmms_eval_start.py` | LMMS-Eval launcher (used for MVBench) |
-| `scripts/` | Public launch script templates |
-| `libs/` | Model, dataset, and training utility modules |
-| `lmms_eval/` | LMMS-Eval integration for benchmark evaluation |
-| `tools/` | Dataset conversion and feature extraction helpers |
+| 📄 `train.py` | Single-dataset training entry point |
+| 📄 `train_uni.py` | Mixed-dataset unified training entry point |
+| 📄 `unified_eval.py` | Unified evaluation across all supported datasets |
+| 📄 `lmms_eval_start.py` | LMMS-Eval launcher (used for MVBench) |
+| 📁 `scripts/` | Public launch script templates |
+| 📁 `libs/` | Model, dataset, and training utility modules |
+| 📁 `lmms_eval/` | LMMS-Eval integration for benchmark evaluation |
+| 📁 `tools/` | Dataset conversion and feature extraction helpers |
 
 ---
 
-## Citation
+## 📝 Citation
 
 If you find UniMVU useful in your research, please cite:
 
@@ -781,13 +789,16 @@ If you find UniMVU useful in your research, please cite:
 
 ---
 
-## Acknowledgements
+## 🙏 Acknowledgements
 
 We gratefully acknowledge the following open-source projects that UniMVU builds upon:
-[PAVE](https://github.com/dragonlzm/PAVE),
-[Qwen2](https://github.com/QwenLM/Qwen2),
-[LLaVA-OneVision](https://github.com/LLaVA-VL/LLaVA-NeXT), and
-[LMMS-Eval](https://github.com/EvolvingLMMs-Lab/lmms-eval).
+
+- **[PAVE](https://github.com/dragonlzm/PAVE)** — Multimodal video understanding with side channel features
+- **[Qwen2](https://github.com/QwenLM/Qwen2)** — Large language model backbone
+- **[LLaVA-OneVision](https://github.com/LLaVA-VL/LLaVA-NeXT)** — Visual instruction tuning framework
+- **[LMMS-Eval](https://github.com/EvolvingLMMs-Lab/lmms-eval)** — Unified evaluation framework for multimodal models
+
+---
 
 <p align="center">
   <a href="https://www.ival-mbzuai.com">
