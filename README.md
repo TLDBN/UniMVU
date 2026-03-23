@@ -28,6 +28,15 @@
 
 **UniMVU** is a unified multimodal video understanding framework that adaptively balances video, audio, depth, and long-video evidence via **instruction-aware gating** — allocating attention where it matters, query by query.
 
+
+<p align="center">
+  <img src="docs/UniMVU-Teaser-1.png" alt="UniMVU teaser figure" width="960">
+</p>
+
+<p align="center">
+  <strong>Instruction-aware gating dynamically reweights modalities for each query instead of applying a fixed fusion recipe to every sample.</strong>
+</p>
+
 ---
 
 ## 📑 Table of Contents
@@ -36,6 +45,7 @@
 - [Highlights](#-highlights)
 - [Supported Benchmarks](#-supported-benchmarks)
 - [Main Results](#-main-results)
+- [Qualitative Results](#-qualitative-results)
 - [Installation](#%EF%B8%8F-installation)
 - [Data Preparation](#-data-preparation)
 - [Training](#-training)
@@ -76,8 +86,6 @@
 | 🎵 Audio-Video QA | Music-AVQA, AVQA, AVSD | Video + Audio |
 | 🧊 3D QA | ScanQA, SQA3D | Video + Depth |
 | 📹 Long-Video QA | MVBench | Video (extended) |
-
----
 
 ## 📊 Main Results
 
@@ -630,6 +638,22 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
     </tr>
   </tbody>
 </table>
+
+---
+
+## 🎬 Qualitative Results
+
+<p align="center">
+  <strong>UniMVU shifts modality emphasis with the instruction, improving grounding across audio-video, 3D, and long-video reasoning settings.</strong>
+</p>
+
+<p align="center">
+  <img src="docs/UniMVU-Qualitative-suppl.png" width="980" alt="UniMVU qualitative results on multimodal video understanding benchmarks">
+</p>
+
+<p align="center">
+  <img src="docs/UniMVU-Qualitative-suppl_2.png" width="980" alt="Additional UniMVU qualitative results">
+</p>
 
 ---
 
