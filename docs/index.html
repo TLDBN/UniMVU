@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UniMVU: Not All Modalities Are Equal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:               #ffffff;
+      --bg-alt:           #f8f9fb;
+      --surface:          #f3f4f6;
+      --surface2:         #eaecf0;
+      --border:           #d1d5db;
+      --border-light:     #e5e7eb;
+      --accent:           #d97706;      /* amber-600 */
+      --accent-light:     #fef3c7;
+      --accent2:          #2563eb;      /* blue-600  */
+      --accent2-light:    #dbeafe;
+      --accent3:          #16a34a;      /* green-600 */
+      --text:             #111827;
+      --text-muted:       #4b5563;
+      --text-dim:         #9ca3af;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #fffbf5 0%, #fef9f0 50%, #f0f7ff 100%);
+      border-bottom: 1px solid var(--border-light);
+      padding: 80px 24px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% -10%, rgba(217,119,6,0.09) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 85% 60%,  rgba(37,99,235,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .conference-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-light);
+      border: 1px solid rgba(217,119,6,0.35);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.1rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 32px;
+      font-weight: 400;
+    }
+
+    .authors {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4px 14px;
+      font-size: 15px;
+      color: var(--text);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .authors a { color: var(--accent2); text-decoration: none; }
+    .authors a:hover { text-decoration: underline; }
+    .affiliation {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: all .18s;
+      cursor: pointer;
+    }
+    .btn-arxiv  { background: #fef2f2; border-color: #fca5a5; color: #b91c1c; }
+    .btn-arxiv:hover  { background: #fee2e2; }
+    .btn-hf     { background: #fffbeb; border-color: #fcd34d; color: #92400e; }
+    .btn-hf:hover     { background: #fef3c7; }
+    .btn-github { background: var(--surface); border-color: var(--border); color: var(--text); }
+    .btn-github:hover { background: var(--surface2); }
+    .btn-paper  { background: #f0fdf4; border-color: #86efac; color: #15803d; }
+    .btn-paper:hover  { background: #dcfce7; }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    section { padding: 64px 0; border-bottom: 1px solid var(--border-light); }
+    section:last-of-type { border-bottom: none; }
+
+    h2 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 32px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    h3:first-child { margin-top: 0; }
+
+    p { color: var(--text-muted); margin-bottom: 12px; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── ABSTRACT ── */
+    .abstract-box {
+      background: var(--bg-alt);
+      border: 1px solid var(--border-light);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 24px 28px;
+      font-size: 15.5px;
+      line-height: 1.85;
+      color: var(--text-muted);
+    }
+
+    /* ── ARCH IMAGE ── */
+    .arch-figure { text-align: center; margin: 0; }
+    .arch-figure img {
+      width: 100%;
+      max-width: 880px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    }
+    .arch-figure figcaption {
+      margin-top: 14px;
+      font-size: 13.5px;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    /* ── HIGHLIGHTS ── */
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .highlight-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border-light);
+      border-top: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: 22px 20px;
+      transition: box-shadow .2s;
+    }
+    .highlight-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .highlight-num {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+    .highlight-card p { font-size: 14px; margin: 0; color: var(--text-muted); }
+
+    /* ── TABLES ── */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin: 0 0 24px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+    thead th {
+      background: var(--surface2);
+      padding: 11px 14px;
+      text-align: center;
+      font-weight: 600;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    thead th:first-child, thead th:nth-child(2) { text-align: left; }
+    tbody td {
+      padding: 9px 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--text-muted);
+    }
+    /* Scale badge cells (rowspan) stay centered; method cell is either
+       the sibling after a rowspan cell, or the first-child when no
+       rowspan cell is present in that row. */
+    tbody td[rowspan] { text-align: center; vertical-align: middle; }
+    tbody td[rowspan] + td,
+    tbody td:first-child:not([rowspan]) { text-align: left; }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover td { background: #fafafa; }
+    tbody tr.group-divider td { border-top: 2px solid var(--border); }
+    tbody tr.ours td {
+      background: #dbeafe;
+      color: var(--text);
+    }
+    tbody tr.ours:hover td { background: #bfdbfe; }
+    tbody tr.ours td[rowspan] + td,
+    tbody tr.ours td:first-child:not([rowspan]) { font-weight: 600; }
+    .scale-badge {
+      display: inline-block;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 2px 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    a.method-link { color: var(--accent2); text-decoration: none; }
+    a.method-link:hover { text-decoration: underline; }
+    strong.bold-num { color: var(--text); font-weight: 700; }
+
+    /* ── TASK TABS ── */
+    .tab-nav {
+      display: flex;
+      gap: 0;
+      margin-bottom: 28px;
+      border-bottom: 2px solid var(--border-light);
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all .15s;
+      font-family: inherit;
+      margin-bottom: -2px;
+    }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+    .tab-btn:hover:not(.active) { color: var(--text); background: var(--bg-alt); border-radius: 6px 6px 0 0; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── CITATION ── */
+    .citation-box {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 22px 26px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      line-height: 1.75;
+      color: #1e40af;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-muted);
+      padding: 5px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all .15s;
+    }
+    .copy-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+
+    /* ── LOGO BAR ── */
+    .logo-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      padding: 40px 0 16px;
+    }
+    .logo-bar img {
+      height: 52px;
+      filter: grayscale(15%);
+      transition: filter .2s, transform .2s;
+    }
+    .logo-bar img:hover { filter: grayscale(0); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 28px 24px;
+      color: var(--text-dim);
+      font-size: 13px;
+      border-top: 1px solid var(--border-light);
+      background: var(--bg-alt);
+    }
+    footer a { color: var(--text-muted); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    /* ── ICON SVGs ── */
+    .icon { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+
+    @media (max-width: 600px) {
+      section { padding: 44px 0; }
+      h2 { font-size: 1.4rem; }
+      .citation-box { font-size: 11.5px; }
+      .hero { padding: 60px 20px 48px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════ HERO ════════════════════════════════ -->
+<div class="hero">
+  <div class="container">
+    <div class="conference-badge">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      CVPR 2026
+    </div>
+
+    <h1>UniMVU: Not All Modalities Are Equal</h1>
+    <p class="subtitle">Instruction-Aware Gating for Unified Multimodal Video Understanding</p>
+
+    <div class="authors">
+      <span>Bonan Ding<sup>1</sup></span><span>·</span>
+      <span>Umair Nawaz<sup>1</sup></span><span>·</span>
+      <span>Ufaq Khan<sup>1</sup></span><span>·</span>
+      <span>Abdelrahman M. Shaker<sup>1</sup></span><span>·</span>
+      <span>Muhammad Haris Khan<sup>1</sup></span><span>·</span>
+      <span>Jiale Cao<sup>2</sup></span><span>·</span>
+      <span>Jin Xie<sup>3</sup></span><span>·</span>
+      <span>Fahad Shahbaz Khan<sup>1,4</sup></span>
+    </div>
+    <p class="affiliation">
+      <sup>1</sup>Mohamed bin Zayed University of Artificial Intelligence &nbsp;&nbsp;
+      <sup>2</sup>Tianjin University &nbsp;&nbsp;
+      <sup>3</sup>Chongqing University &nbsp;&nbsp;
+      <sup>4</sup>Linköping University
+    </p>
+
+    <div class="links">
+      <a href="https://arxiv.org/abs/YOUR_ARXIV_ID" class="btn btn-arxiv">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        arXiv
+      </a>
+      <a href="https://github.com/TLDBN/UniMVU" class="btn btn-github">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        GitHub
+      </a>
+      <a href="https://huggingface.co/BonanDing/UniMVU" class="btn btn-hf">
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><text x="6" y="16" font-size="10" fill="white">🤗</text></svg>
+        Models
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════ ABSTRACT ════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>Abstract</h2>
+    <div class="abstract-box">
+      Pre-trained video large language models excel at visual reasoning, but they struggle when videos arrive with auxiliary streams such as audio, depth maps, or high-frame-rate inputs. In these settings, uniform fusion can introduce modality interference and let irrelevant channels distract the model. UniMVU addresses this with <strong style="color:var(--accent)">instruction-aware fusion</strong> across video, audio, depth, and other modalities via two dynamic gating stages: <strong style="color:var(--accent2)">feature-level gates</strong> emphasize salient regions within each modality, while <strong style="color:var(--accent2)">modality-level gates</strong> reweight whole streams based on the input instruction. Across six benchmarks — AVQA, AVSD, Music-AVQA, ScanQA, SQA3D, and MVBench — UniMVU delivers consistent gains over static-fusion baselines, with improvements of up to <strong style="color:var(--accent3); font-weight:700">+13.5 CIDEr</strong> on AVSD.
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ ARCHITECTURE ════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>Method</h2>
+    <figure class="arch-figure">
+      <img src="UniMVU_Arch.png" alt="UniMVU Architecture Diagram" />
+      <figcaption>Overview of UniMVU and its instruction-aware multimodal fusion design. Feature-level and modality-level dynamic gates adaptively route information based on the input query.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ HIGHLIGHTS ════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>Highlights</h2>
+    <div class="highlights-grid">
+      <div class="highlight-card">
+        <div class="highlight-num">01</div>
+        <p>Introduces <strong>instruction-aware dynamic gating</strong> at both feature and modality levels, allowing each query to selectively attend to the relevant data streams.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-num">02</div>
+        <p>One model family supports <strong>audio-video QA, 3D QA, and long-video QA</strong> in a single release codebase, covering six diverse benchmarks.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-num">03</div>
+        <p>Clean public surface around <strong>train.py, train_uni.py, unified_eval.py,</strong> and <strong>lmms_eval_start.py</strong> makes integration and reproduction straightforward.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-num">04</div>
+        <p>Both <strong>per-task training</strong> and <strong>unified multi-task training</strong> are supported in the public scripts for maximum flexibility.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ RESULTS ════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>Main Results</h2>
+    <p style="margin-bottom:28px">Evaluation across audio-video QA, 3D QA, and long-video QA. <code style="background:var(--surface2);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--text)">PAVE*</code> denotes our reproduction using the public PAVE code. UniMVU<sup>†</sup> refers to the jointly trained multi-task model. Refined scores are shown in parentheses where reported.</p>
+
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab(event,'av')">Audio-Visual QA</button>
+      <button class="tab-btn" onclick="switchTab(event,'3d')">3D QA</button>
+      <button class="tab-btn" onclick="switchTab(event,'video')">Long-Video QA</button>
+    </div>
+
+    <!-- ── Audio-Visual QA ── -->
+    <div id="tab-av" class="tab-panel active">
+      <h3>Music-AVQA</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Scale</th><th>Method</th><th>Audio Avg.</th><th>Visual Avg.</th><th>AV Avg.</th><th>Overall Avg.</th></tr>
+          </thead>
+          <tbody>
+            <tr><td rowspan="5"><span class="scale-badge">7B</span></td>
+                <td><a class="method-link" href="https://github.com/rikeilong/Bay-CAT">CAT-FT</a></td>
+                <td><strong class="bold-num">84.9</strong></td><td>86.1</td><td><strong class="bold-num">83.2</strong></td><td><strong class="bold-num">84.3</strong></td></tr>
+            <tr><td><a class="method-link" href="https://github.com/LLaVA-VL/LLaVA-NeXT">LLaVA-OV-FT (video-only)</a></td>
+                <td>75.4</td><td>89.3</td><td>72.3</td><td>77.4</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/dragonlzm/PAVE">PAVE*</a></td>
+                <td>79.1</td><td>92.7</td><td>77.8</td><td>81.9</td></tr>
+            <tr class="ours"><td>UniMVU<sup>†</sup></td>
+                <td>78.9</td><td>92.8</td><td>77.2</td><td>81.6</td></tr>
+            <tr class="ours"><td>UniMVU</td>
+                <td>81.7</td><td><strong class="bold-num">93.5</strong></td><td>79.8</td><td>83.7</td></tr>
+
+            <tr class="group-divider"><td rowspan="8"><span class="scale-badge">0.5B</span></td>
+                <td><a class="method-link" href="https://github.com/TXH-mercury/VAST">VAST</a></td>
+                <td>—</td><td>—</td><td>—</td><td>80.7</td></tr>
+            <tr><td><a class="method-link" href="https://ojs.aaai.org/index.php/AAAI/article/view/33138">AVAF-Net</a></td>
+                <td>78.1</td><td>82.3</td><td>72.1</td><td>75.9</td></tr>
+            <tr><td><a class="method-link" href="https://arxiv.org/abs/2510.18346">AV-Master</a></td>
+                <td><strong class="bold-num">79.9</strong></td><td>86.5</td><td>74.2</td><td>78.5</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/LLaVA-VL/LLaVA-NeXT">LLaVA-OV-FT (video-only)</a></td>
+                <td>69.6</td><td>76.3</td><td>62.8</td><td>67.6</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/LLaVA-VL/LLaVA-NeXT">LLaVA-OV-FT* (video-audio concat)</a></td>
+                <td>76.2</td><td>89.1</td><td>72.4</td><td>77.5</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/dragonlzm/PAVE">PAVE*</a></td>
+                <td>75.9</td><td>88.6</td><td>72.4</td><td>77.3</td></tr>
+            <tr class="ours"><td>UniMVU<sup>†</sup></td>
+                <td>77.2</td><td>90.2</td><td>74.8</td><td>79.3</td></tr>
+            <tr class="ours"><td>UniMVU</td>
+                <td>79.5</td><td><strong class="bold-num">91.8</strong></td><td><strong class="bold-num">76.7</strong></td><td><strong class="bold-num">81.9</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>AVQA and AVSD</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Scale</th><th>Method</th><th>AVQA ACC (%)</th><th>AVSD ROUGE-L</th><th>AVSD CIDEr</th></tr>
+          </thead>
+          <tbody>
+            <tr><td rowspan="4"><span class="scale-badge">7B</span></td>
+                <td><a class="method-link" href="https://github.com/LLaVA-VL/LLaVA-NeXT">LLaVA-OV-FT (video-only)</a></td>
+                <td>90.8</td><td>—</td><td>124.9</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/dragonlzm/PAVE">PAVE*</a></td>
+                <td>93.4</td><td>38.5</td><td>151.6</td></tr>
+            <tr class="ours"><td>UniMVU<sup>†</sup></td>
+                <td>92.2</td><td>39.5</td><td>162.7</td></tr>
+            <tr class="ours"><td>UniMVU</td>
+                <td><strong class="bold-num">94.3</strong></td><td><strong class="bold-num">39.8</strong></td><td><strong class="bold-num">165.1</strong></td></tr>
+
+            <tr class="group-divider"><td rowspan="7"><span class="scale-badge">0.5B</span></td>
+                <td><a class="method-link" href="https://github.com/GeWu-Lab/PSTP-Net">PSTP-Net</a></td>
+                <td>90.2</td><td>—</td><td>—</td></tr>
+            <tr><td><a class="method-link" href="https://arxiv.org/abs/2510.18346">AV-Master</a></td>
+                <td>91.4</td><td>—</td><td>—</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/LLaVA-VL/LLaVA-NeXT">LLaVA-OV-FT (video-only)</a></td>
+                <td>86.4</td><td>—</td><td>117.6</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/LLaVA-VL/LLaVA-NeXT">LLaVA-OV-FT* (video-audio concat)</a></td>
+                <td>89.9</td><td>35.7</td><td>127.8</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/dragonlzm/PAVE">PAVE*</a></td>
+                <td>89.6</td><td>36.5</td><td>134.9</td></tr>
+            <tr class="ours"><td>UniMVU<sup>†</sup></td>
+                <td>91.1</td><td>37.8</td><td>145.9</td></tr>
+            <tr class="ours"><td>UniMVU</td>
+                <td><strong class="bold-num">92.3</strong></td><td><strong class="bold-num">38.2</strong></td><td><strong class="bold-num">147.1</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── 3D QA ── -->
+    <div id="tab-3d" class="tab-panel">
+      <h3>ScanQA</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Scale</th><th>Method</th><th>EM@1</th><th>BLEU-4</th><th>METEOR</th><th>ROUGE-L</th><th>CIDEr</th></tr>
+          </thead>
+          <tbody>
+            <tr><td rowspan="6"><span class="scale-badge">7B</span></td>
+                <td><a class="method-link" href="https://github.com/ZCMax/LLaVA-3D">LLaVA-3D-7B</a></td>
+                <td>27.0 (45.0)</td><td>14.5</td><td><strong class="bold-num">20.7</strong></td><td><strong class="bold-num">50.1</strong></td><td>91.7</td></tr>
+            <tr><td><a class="method-link" href="https://openaccess.thecvf.com/content/WACV2025/papers/Fu_Scene-LLM_Extending_Language_Model_for_3D_Visual_Reasoning_WACV_2025_paper.pdf">Scene-LLM-7B</a></td>
+                <td>27.2</td><td>12.0</td><td>16.6</td><td>40.0</td><td>80.0</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/LLaVA-VL/LLaVA-NeXT">LLaVA-OV-FT (video-only)</a></td>
+                <td>27.4 (46.3)</td><td>—</td><td>13.5</td><td>47.4</td><td>95.1</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/dragonlzm/PAVE">PAVE*</a></td>
+                <td>28.9 (48.2)</td><td>16.0</td><td>19.8</td><td>48.8</td><td>102.4</td></tr>
+            <tr class="ours"><td>UniMVU<sup>†</sup></td>
+                <td>29.2 (<strong class="bold-num">48.8</strong>)</td><td><strong class="bold-num">17.83</strong></td><td>20.1</td><td>49.01</td><td><strong class="bold-num">104.2</strong></td></tr>
+            <tr class="ours"><td>UniMVU</td>
+                <td><strong class="bold-num">29.6</strong> (<strong class="bold-num">48.8</strong>)</td><td>16.0</td><td>19.8</td><td>49.0</td><td>102.7</td></tr>
+
+            <tr class="group-divider"><td rowspan="7"><span class="scale-badge">0.5B</span></td>
+                <td><a class="method-link" href="https://dl.acm.org/doi/pdf/10.1145/3731715.3733426">SceSU</a></td>
+                <td>25.1</td><td>13.2</td><td>14.9</td><td>35.5</td><td>69.6</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/LZ-CH/DSPNet">DSPNet</a></td>
+                <td><strong class="bold-num">26.5</strong></td><td><strong class="bold-num">15.4</strong></td><td>15.7</td><td>39.3</td><td>78.1</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/LLaVA-VL/LLaVA-NeXT">LLaVA-OV-FT (video-only)</a></td>
+                <td>20.5 (36.3)</td><td>6.5</td><td>14.3</td><td>36.9</td><td>70.5</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/LLaVA-VL/LLaVA-NeXT">LLaVA-OV-FT (video-3d concat)</a></td>
+                <td>10.2 (24.3)</td><td>4.9</td><td>7.4</td><td>20.2</td><td>34.9</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/dragonlzm/PAVE">PAVE*</a></td>
+                <td>23.5 (40.4)</td><td>12.7</td><td>17.1</td><td>42.7</td><td>84.9</td></tr>
+            <tr class="ours"><td>UniMVU<sup>†</sup></td>
+                <td>24.7 (42.0)</td><td>14.5</td><td>17.9</td><td>44.2</td><td>89.7</td></tr>
+            <tr class="ours"><td>UniMVU</td>
+                <td>25.9 (<strong class="bold-num">43.2</strong>)</td><td>13.5</td><td><strong class="bold-num">18.0</strong></td><td><strong class="bold-num">44.7</strong></td><td><strong class="bold-num">90.9</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>SQA3D</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Scale</th><th>Method</th><th>EM@1</th><th>What</th><th>Is</th><th>How</th></tr>
+          </thead>
+          <tbody>
+            <tr><td rowspan="6"><span class="scale-badge">7B</span></td>
+                <td><a class="method-link" href="https://github.com/ZCMax/LLaVA-3D">LLaVA-3D-7B</a></td>
+                <td>55.6 (57.6)</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td><a class="method-link" href="https://openaccess.thecvf.com/content/WACV2025/papers/Fu_Scene-LLM_Extending_Language_Model_for_3D_Visual_Reasoning_WACV_2025_paper.pdf">Scene-LLM-7B</a></td>
+                <td>54.2</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/LLaVA-VL/LLaVA-NeXT">LLaVA-OV-FT (video-only)</a></td>
+                <td>55.8 (58.1)</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/dragonlzm/PAVE">PAVE*</a></td>
+                <td>57.6 (59.9)</td><td>52.3 (56.9)</td><td>69.2 (69.9)</td><td>56.3 (57.4)</td></tr>
+            <tr class="ours"><td>UniMVU<sup>†</sup></td>
+                <td>58.1 (60.4)</td><td>52.3 (56.6)</td><td>70.7 (71.8)</td><td><strong class="bold-num">60.4 (61.1)</strong></td></tr>
+            <tr class="ours"><td>UniMVU</td>
+                <td><strong class="bold-num">59.4 (61.6)</strong></td><td><strong class="bold-num">53.4 (57.7)</strong></td><td><strong class="bold-num">75.9 (76.8)</strong></td><td>55.9 (56.1)</td></tr>
+
+            <tr class="group-divider"><td rowspan="6"><span class="scale-badge">0.5B</span></td>
+                <td><a class="method-link" href="https://dl.acm.org/doi/pdf/10.1145/3731715.3733426">SceSU</a></td>
+                <td>46.8</td><td>32.2</td><td>64.9</td><td>46.2</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/LZ-CH/DSPNet">DSPNet</a></td>
+                <td>50.4</td><td>38.2</td><td>66.0</td><td>51.2</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/LLaVA-VL/LLaVA-NeXT">LLaVA-OV-FT (video-only)</a></td>
+                <td>44.1 (45.7)</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/dragonlzm/PAVE">PAVE*</a></td>
+                <td>48.5 (50.6)</td><td>37.5 (41.6)</td><td>61.0 (62.1)</td><td>50.1 (50.3)</td></tr>
+            <tr class="ours"><td>UniMVU<sup>†</sup></td>
+                <td>50.8 (52.6)</td><td>40.9 (44.4)</td><td>63.7 (64.7)</td><td>52.5 (52.7)</td></tr>
+            <tr class="ours"><td>UniMVU</td>
+                <td><strong class="bold-num">55.2 (57.1)</strong></td><td><strong class="bold-num">46.5 (50.6)</strong></td><td><strong class="bold-num">67.6 (68.4)</strong></td><td><strong class="bold-num">57.4 (57.6)</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── Long-Video QA ── -->
+    <div id="tab-video" class="tab-panel">
+      <h3>MVBench</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Scale</th><th>Method</th><th>SC</th><th>FGP</th><th>OS</th><th>AP</th><th>AS</th><th>Avg.</th></tr>
+          </thead>
+          <tbody>
+            <tr><td rowspan="4"><span class="scale-badge">0.5B</span></td>
+                <td><a class="method-link" href="https://github.com/LLaVA-VL/LLaVA-NeXT">LLaVA-OV</a></td>
+                <td>37.5</td><td>49.0</td><td><strong class="bold-num">33.0</strong></td><td>—</td><td>—</td><td>45.5</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/dragonlzm/PAVE">PAVE*</a></td>
+                <td>41.0</td><td>50.0</td><td>32.0</td><td>43.0</td><td>46.5</td><td>44.5</td></tr>
+            <tr class="ours"><td>UniMVU<sup>†</sup></td>
+                <td>37.5</td><td>49.0</td><td>30.5</td><td><strong class="bold-num">64.0</strong></td><td><strong class="bold-num">63.0</strong></td><td><strong class="bold-num">48.6</strong></td></tr>
+            <tr class="ours"><td>UniMVU</td>
+                <td><strong class="bold-num">43.0</strong></td><td><strong class="bold-num">50.5</strong></td><td>30.0</td><td>53.5</td><td>52.0</td><td>46.7</td></tr>
+
+            <tr class="group-divider"><td rowspan="6"><span class="scale-badge">7B</span></td>
+                <td><a class="method-link" href="https://github.com/OpenGVLab/Ask-Anything">VideoChat2-7B</a></td>
+                <td>44.0</td><td>49.0</td><td><strong class="bold-num">42.5</strong></td><td>47.5</td><td>66.0</td><td>51.1</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/DAMO-NLP-SG/VideoLLaMA2">VideoLLaMA2.1-7B</a></td>
+                <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>57.3</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/dragonlzm/PAVE">PAVE-7B*</a></td>
+                <td>51.0</td><td>53.5</td><td>39.5</td><td>70.5</td><td>70.7</td><td>57.1</td></tr>
+            <tr><td><a class="method-link" href="https://github.com/LLaVA-VL/LLaVA-NeXT">LLaVA-OV-7B (Baseline)</a></td>
+                <td><strong class="bold-num">52.0</strong></td><td>53.0</td><td>35.5</td><td>—</td><td>—</td><td>56.7</td></tr>
+            <tr class="ours"><td>UniMVU<sup>†</sup></td>
+                <td>51.5</td><td><strong class="bold-num">58.0</strong></td><td>39.5</td><td><strong class="bold-num">76.5</strong></td><td>76.1</td><td><strong class="bold-num">59.5</strong></td></tr>
+            <tr class="ours"><td>UniMVU</td>
+                <td>51.0</td><td>54.5</td><td>38.5</td><td>71.0</td><td><strong class="bold-num">77.0</strong></td><td>58.0</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ CITATION ════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>Citation</h2>
+    <p style="margin-bottom:20px">If you find UniMVU useful in your research, please cite:</p>
+    <div style="position:relative">
+      <div class="citation-box" id="citation-text">@inproceedings{ding2026unimvu,
+  title     = {Not All Modalities Are Equal: Instruction-Aware Gating for Multimodal Videos},
+  author    = {Ding, Bonan and Nawaz, Umair and Khan, Ufaq and Shaker, Abdelrahman M.
+               and Khan, Muhammad Haris and Cao, Jiale and Xie, Jin and Khan, Fahad Shahbaz},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  year      = {2026}
+}</div>
+      <button class="copy-btn" onclick="copyCitation()">Copy</button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ ACKNOWLEDGEMENT ════════════════════════════════ -->
+<section style="padding-bottom:40px">
+  <div class="container" style="text-align:center">
+    <h2 style="text-align:center">Acknowledgements</h2>
+    <p style="max-width:700px;margin:12px auto 0;text-align:center">We gratefully acknowledge the following open-source projects that UniMVU builds upon:
+      <a href="https://github.com/dragonlzm/PAVE" target="_blank">PAVE</a>,
+      <a href="https://github.com/QwenLM/Qwen2" target="_blank">Qwen2</a>,
+      <a href="https://github.com/LLaVA-VL/LLaVA-NeXT" target="_blank">LLaVA-OneVision</a>, and
+      <a href="https://github.com/EvolvingLMMs-Lab/lmms-eval" target="_blank">LMMS-Eval</a>.
+    </p>
+    <div class="logo-bar">
+      <a href="https://www.ival-mbzuai.com" target="_blank"><img src="IVAL_logo.png" alt="IVAL" /></a>
+      <a href="https://github.com/mbzuai-oryx" target="_blank"><img src="Oryx_logo.png" alt="Oryx" /></a>
+      <a href="https://mbzuai.ac.ae" target="_blank"><img src="MBZUAI_logo.png" alt="MBZUAI" /></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>UniMVU · CVPR 2026 &nbsp;|&nbsp; Website template inspired by <a href="https://mbzuai-oryx.github.io/EvoLMM/" target="_blank">EvoLMM</a> &amp; <a href="https://nerfies.github.io" target="_blank">Nerfies</a> &nbsp;|&nbsp; Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a></p>
+</footer>
+
+<script>
+  function switchTab(e, id) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    e.target.classList.add('active');
+    document.getElementById('tab-' + id).classList.add('active');
+  }
+
+  function copyCitation() {
+    const text = document.getElementById('citation-text').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 2000);
+    });
+  }
+</script>
+</body>
+</html>

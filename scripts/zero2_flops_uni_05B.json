@@ -1,0 +1,32 @@
+{
+    "fp16": {
+        "enabled": "auto",
+        "loss_scale": 0,
+        "loss_scale_window": 1000,
+        "initial_scale_power": 16,
+        "hysteresis": 2,
+        "min_loss_scale": 1
+    },
+    "bf16": {
+        "enabled": "auto"
+    },
+    "gradient_clipping": 0.1,
+    "train_micro_batch_size_per_gpu": "auto",
+    "train_batch_size": "auto",
+    "gradient_accumulation_steps": "auto",
+    "zero_optimization": {
+        "stage": 2,
+        "overlap_comm": true,
+        "contiguous_gradients": true,
+        "sub_group_size": 1e9,
+        "reduce_bucket_size": "auto"
+    },
+    "flops_profiler": {
+        "enabled": true,
+        "profile_step": 1,
+        "module_depth": -1,
+        "top_modules": 3,
+        "detailed": true,
+        "output_file": "univ2_0.5b_flops_profiler.txt"
+    }
+}

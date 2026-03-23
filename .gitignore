@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Runtime outputs
+logs/
+eval_output/
+checkpoints/
+outputs/
+*.ckpt
+*.bin
+
+# Local data and caches
+data/
+lmms-lab/
+wandb/
+
+# Editor / OS files
+.DS_Store
+.idea/
+.vscode/
+.cursor/
+.cursorignore
+*.swp
+*.swo
+.ipynb_checkpoints/
