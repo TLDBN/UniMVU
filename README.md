@@ -655,6 +655,10 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
   <img src="docs/UniMVU-Qualitative-suppl_2.png" width="980" alt="Additional UniMVU qualitative results">
 </p>
 
+<p align="center">
+  <img src="docs/UniMVU-Qualitative-suppl_3.png" width="980" alt="Additional UniMVU qualitative results across challenging multimodal cases">
+</p>
+
 ---
 
 ## ⚙️ Installation
