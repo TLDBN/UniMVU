@@ -130,14 +130,14 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
       <td bgcolor="#ffffff">81.9</td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_DAGGER_MODEL">UniMVU<sup>&dagger;</sup></a></td>
+      <td bgcolor="#dbeafe"><a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_uni_7B">UniMVU<sup>&dagger;</sup></a></td>
       <td bgcolor="#dbeafe">78.9</td>
       <td bgcolor="#dbeafe">92.8</td>
       <td bgcolor="#dbeafe">77.2</td>
       <td bgcolor="#dbeafe">81.6</td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_MODEL">UniMVU</a></td>
+      <td bgcolor="#dbeafe"><a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_7B_music_avqa">UniMVU</a></td>
       <td bgcolor="#dbeafe">81.7</td>
       <td bgcolor="#dbeafe"><strong>93.5</strong></td>
       <td bgcolor="#dbeafe">79.8</td>
@@ -189,14 +189,14 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
       <td bgcolor="#ffffff">77.3</td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_DAGGER_MODEL">UniMVU<sup>&dagger;</sup></a></td>
+      <td bgcolor="#dbeafe"><a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_uni_0.5B">UniMVU<sup>&dagger;</sup></a></td>
       <td bgcolor="#dbeafe">77.2</td>
       <td bgcolor="#dbeafe">90.2</td>
       <td bgcolor="#dbeafe">74.8</td>
       <td bgcolor="#dbeafe">79.3</td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_MODEL">UniMVU</a></td>
+      <td bgcolor="#dbeafe"><a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_0.5B_music_avqa">UniMVU</a></td>
       <td bgcolor="#dbeafe">79.5</td>
       <td bgcolor="#dbeafe"><strong>91.8</strong></td>
       <td bgcolor="#dbeafe"><strong>76.7</strong></td>
@@ -232,13 +232,13 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
       <td bgcolor="#ffffff">151.6</td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_DAGGER_MODEL">UniMVU<sup>&dagger;</sup></a></td>
+      <td bgcolor="#dbeafe"><a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_uni_7B">UniMVU<sup>&dagger;</sup></a></td>
       <td bgcolor="#dbeafe">92.2</td>
       <td bgcolor="#dbeafe">39.5</td>
       <td bgcolor="#dbeafe">162.7</td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_MODEL">UniMVU</a></td>
+      <td bgcolor="#dbeafe">UniMVU (<a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_7B_avqa">AVQA</a> / <a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_7B_avsd">AVSD</a>)</td>
       <td bgcolor="#dbeafe"><strong>94.3</strong></td>
       <td bgcolor="#dbeafe"><strong>39.8</strong></td>
       <td bgcolor="#dbeafe"><strong>165.1</strong></td>
@@ -277,13 +277,13 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
       <td bgcolor="#ffffff">134.9</td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_DAGGER_MODEL">UniMVU<sup>&dagger;</sup></a></td>
+      <td bgcolor="#dbeafe"><a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_uni_0.5B">UniMVU<sup>&dagger;</sup></a></td>
       <td bgcolor="#dbeafe">91.1</td>
       <td bgcolor="#dbeafe">37.8</td>
       <td bgcolor="#dbeafe">145.9</td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_MODEL">UniMVU</a></td>
+      <td bgcolor="#dbeafe">UniMVU (<a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_0.5B_avqa">AVQA</a> / <a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_0.5B_avsd">AVSD</a>)</td>
       <td bgcolor="#dbeafe"><strong>92.3</strong></td>
       <td bgcolor="#dbeafe"><strong>38.2</strong></td>
       <td bgcolor="#dbeafe"><strong>147.1</strong></td>
@@ -342,7 +342,7 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
       <td bgcolor="#ffffff">102.4</td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_DAGGER_MODEL">UniMVU<sup>&dagger;</sup></a></td>
+      <td bgcolor="#dbeafe"><a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_uni_7B">UniMVU<sup>&dagger;</sup></a></td>
       <td bgcolor="#dbeafe">29.2 (<strong>48.8</strong>)</td>
       <td bgcolor="#dbeafe"><strong>17.83</strong></td>
       <td bgcolor="#dbeafe">20.1</td>
@@ -350,7 +350,7 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
       <td bgcolor="#dbeafe"><strong>104.2</strong></td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_MODEL">UniMVU</a></td>
+      <td bgcolor="#dbeafe"><a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_7B_scanqa">UniMVU</a></td>
       <td bgcolor="#dbeafe"><strong>29.6</strong> (<strong>48.8</strong>)</td>
       <td bgcolor="#dbeafe">16.0</td>
       <td bgcolor="#dbeafe">19.8</td>
@@ -401,7 +401,7 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
       <td bgcolor="#ffffff">84.9</td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_DAGGER_MODEL">UniMVU<sup>&dagger;</sup></a></td>
+      <td bgcolor="#dbeafe"><a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_uni_0.5B">UniMVU<sup>&dagger;</sup></a></td>
       <td bgcolor="#dbeafe">24.7 (42.0)</td>
       <td bgcolor="#dbeafe">14.5</td>
       <td bgcolor="#dbeafe">17.9</td>
@@ -409,7 +409,7 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
       <td bgcolor="#dbeafe">89.7</td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_MODEL">UniMVU</a></td>
+      <td bgcolor="#dbeafe"><a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_0.5B_scanqa">UniMVU</a></td>
       <td bgcolor="#dbeafe">25.9 (<strong>43.2</strong>)</td>
       <td bgcolor="#dbeafe">13.5</td>
       <td bgcolor="#dbeafe"><strong>18.0</strong></td>
@@ -463,14 +463,14 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
       <td bgcolor="#ffffff">56.3 (57.4)</td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_DAGGER_MODEL">UniMVU<sup>&dagger;</sup></a></td>
+      <td bgcolor="#dbeafe"><a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_uni_7B">UniMVU<sup>&dagger;</sup></a></td>
       <td bgcolor="#dbeafe">58.1 (60.4)</td>
       <td bgcolor="#dbeafe">52.3 (56.6)</td>
       <td bgcolor="#dbeafe">70.7 (71.8)</td>
       <td bgcolor="#dbeafe"><strong>60.4</strong> (<strong>61.1</strong>)</td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_MODEL">UniMVU</a></td>
+      <td bgcolor="#dbeafe"><a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_7B_sqa3d">UniMVU</a></td>
       <td bgcolor="#dbeafe"><strong>59.4</strong> (<strong>61.6</strong>)</td>
       <td bgcolor="#dbeafe"><strong>53.4</strong> (<strong>57.7</strong>)</td>
       <td bgcolor="#dbeafe"><strong>75.9</strong> (<strong>76.8</strong>)</td>
@@ -508,14 +508,14 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
       <td bgcolor="#ffffff">50.1 (50.3)</td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_DAGGER_MODEL">UniMVU<sup>&dagger;</sup></a></td>
+      <td bgcolor="#dbeafe"><a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_uni_0.5B">UniMVU<sup>&dagger;</sup></a></td>
       <td bgcolor="#dbeafe">50.8 (52.6)</td>
       <td bgcolor="#dbeafe">40.9 (44.4)</td>
       <td bgcolor="#dbeafe">63.7 (64.7)</td>
       <td bgcolor="#dbeafe">52.5 (52.7)</td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_MODEL">UniMVU</a></td>
+      <td bgcolor="#dbeafe"><a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_0.5B_sqa3d">UniMVU</a></td>
       <td bgcolor="#dbeafe"><strong>55.2</strong> (<strong>57.1</strong>)</td>
       <td bgcolor="#dbeafe"><strong>46.5</strong> (<strong>50.6</strong>)</td>
       <td bgcolor="#dbeafe"><strong>67.6</strong> (<strong>68.4</strong>)</td>
@@ -562,7 +562,7 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
       <td bgcolor="#ffffff">44.5</td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_DAGGER_MODEL">UniMVU<sup>&dagger;</sup></a></td>
+      <td bgcolor="#dbeafe"><a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_uni_0.5B">UniMVU<sup>&dagger;</sup></a></td>
       <td bgcolor="#dbeafe">37.5</td>
       <td bgcolor="#dbeafe">49.0</td>
       <td bgcolor="#dbeafe">30.5</td>
@@ -571,7 +571,7 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
       <td bgcolor="#dbeafe"><strong>48.6</strong></td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_MODEL">UniMVU</a></td>
+      <td bgcolor="#dbeafe"><a href="https://huggingface.co/BonanDing/UniMVU/tree/main">UniMVU</a></td>
       <td bgcolor="#dbeafe"><strong>43.0</strong></td>
       <td bgcolor="#dbeafe"><strong>50.5</strong></td>
       <td bgcolor="#dbeafe">30.0</td>
@@ -619,7 +619,7 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
       <td bgcolor="#ffffff">56.7</td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_DAGGER_MODEL">UniMVU<sup>&dagger;</sup></a></td>
+      <td bgcolor="#dbeafe"><a href="https://huggingface.co/BonanDing/UniMVU/tree/main/unimvu_uni_7B">UniMVU<sup>&dagger;</sup></a></td>
       <td bgcolor="#dbeafe">51.5</td>
       <td bgcolor="#dbeafe"><strong>58.0</strong></td>
       <td bgcolor="#dbeafe">39.5</td>
@@ -628,7 +628,7 @@ Evaluation across audio-video QA, 3D QA, and long-video QA. `PAVE*` denotes our 
       <td bgcolor="#dbeafe"><strong>59.5</strong></td>
     </tr>
     <tr bgcolor="#dbeafe">
-      <td bgcolor="#dbeafe"><a href="https://huggingface.co/YOUR_UNIMVU_MODEL">UniMVU</a></td>
+      <td bgcolor="#dbeafe"><a href="https://huggingface.co/BonanDing/UniMVU/tree/main">UniMVU</a></td>
       <td bgcolor="#dbeafe">51.0</td>
       <td bgcolor="#dbeafe">54.5</td>
       <td bgcolor="#dbeafe">38.5</td>
