@@ -1,6 +1,6 @@
 <div align="center">
 
-# UniMVU: Not All Modalities Are Equal [CVPR 2026]
+# UniMVU: Not All Modalities Are Equal
 
 <p align="center">
   <img src="https://i.imgur.com/waxVImv.png" width="96%" alt="Decorative divider">
