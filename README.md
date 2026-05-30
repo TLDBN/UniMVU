@@ -14,7 +14,7 @@
   <a href="https://TLDBN.github.io/UniMVU/">
     <img src="https://img.shields.io/badge/🌐_Project-Page-f68946?style=for-the-badge" alt="Project Page">
   </a>
-  <a href="https://arxiv.org/abs/YOUR_ARXIV_ID">
+  <a href="https://arxiv.org/abs/2605.26232">
     <img src="https://img.shields.io/badge/📄_arXiv-Paper-b31b1b?style=for-the-badge" alt="arXiv">
   </a>
   <a href="https://huggingface.co/BonanDing/UniMVU">
