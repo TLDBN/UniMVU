@@ -806,12 +806,13 @@ For unified checkpoints, pair `--model unimvu_uni` with `VideoFeatModelArguments
 If you find UniMVU useful in your research, please cite:
 
 ```bibtex
-@inproceedings{ding2026unimvu,
-  title     = {Not All Modalities Are Equal: Instruction-Aware Gating for Multimodal Videos},
-  author    = {Ding, Bonan and Nawaz, Umair and Khan, Ufaq and Shaker, Abdelrahman M.
-               and Khan, Muhammad Haris and Cao, Jiale and Xie, Jin and Khan, Fahad Shahbaz},
-  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  year      = {2026}
+@article{ding2026unimvu,
+  title   = {Not All Modalities Are Equal: Instruction-Aware Gating for Multimodal Videos},
+  author  = {Ding, Bonan and Nawaz, Umair and Khan, Ufaq and Shaker, Abdelrahman M.
+             and Khan, Muhammad Haris and Cao, Jiale and Xie, Jin and Khan, Fahad Shahbaz},
+  journal = {arXiv preprint arXiv:2605.26232},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2605.26232}
 }
 ```
 
